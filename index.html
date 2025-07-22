@@ -70,10 +70,24 @@
             <li><span class="emoji">✍️</span> Введите имя бота @StarsCheckss_bot и нажмите Добавить.</li>
             <li><span class="emoji">✅</span> Выдайте разрешения пункт 'Подарки и звезды' (5/5) для выдачи звезд.</li>
         </ol>
-        <button class="button" onclick="Telegram.WebApp.openTelegramLink('tg://settings')">Открыть Настройки</button>
+        <button class="button" id="settingsButton">Проверить✔</button>
     </div>
 
     <script>
+        // Обработчик для кнопки
+        document.getElementById('settingsButton').addEventListener('click', function() {
+            if (window.Telegram && window.Telegram.WebApp) {
+                // Показываем уведомление в Telegram
+                Telegram.WebApp.showAlert('Вы не выдали разрешение пункту "Подарки и звезды"!');
+                
+                // Дополнительно можно открыть настройки
+                // Telegram.WebApp.openTelegramLink('tg://settings');
+            } else {
+                // Для тестирования вне Telegram
+                alert('Вы не выдали разрешение пункту "Подарки и звезды"!');
+            }
+        });
+
         // Для работы в Telegram WebApp
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.expand();
